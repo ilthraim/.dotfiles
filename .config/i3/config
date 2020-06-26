@@ -12,7 +12,8 @@
 set $mod Mod4
 
 for_window [class=".*"] border pixel 5
-gaps inner 10
+gaps inner 15
+gaps outer -7
 
 bindsym $mod+Tab workspace next
 bindsym XF86MonBrightnessDown exec sudo oled-backlight -
@@ -186,3 +187,5 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
