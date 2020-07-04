@@ -11,13 +11,18 @@ general {
         interval = 5
 }
 
+order += "volume_status"
 order += "wireless _first_"
 order += "battery_level"
 order += "external_script"
-order += "disk /"
+order += "diskdata"
 order += "loadavg"
-order += "memory"
+order += "sysdata"
 order += "tztime local"
+
+volume_status {
+	cache_timeout = 1
+}
 
 wireless _first_ {
         format_up = "W: (%quality at %essid) %ip"
@@ -30,11 +35,13 @@ battery_level {
 
 external_script {
 	format = '{output}'
-	script_path = "~/.scripts/curgpu.sh"
+	script_path = "~/.scripts/i3status_optimus.sh"
 }
 
-disk "/" {
-        format = "%avail"
+diskdata {
+        disk = "nvme1n1p2"
+	format = '[\?color=free {free}]'
+	format += '[\?color=total {total}]'
 }
 
 loadavg {
@@ -43,10 +50,8 @@ loadavg {
     format += '[\?color=15avg {15avg}%]'
 }
 
-memory {
-        format = "%used | %available"
-        threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
+sysdata {
+	format = '[\?color=mem_used_percent Mem: {mem_used}/{mem_total} {mem_total_unit}]'
 }
 
 tztime local {
