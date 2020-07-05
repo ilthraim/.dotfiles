@@ -12,16 +12,21 @@ general {
 }
 
 order += "volume_status"
+order += "arch_updates"
 order += "wireless _first_"
 order += "battery_level"
 order += "external_script"
 order += "diskdata"
 order += "loadavg"
 order += "sysdata"
-order += "tztime local"
+order += "clock"
 
 volume_status {
 	cache_timeout = 1
+}
+
+arch_updates { 
+	format = "UPD: {total}" 
 }
 
 wireless _first_ {
@@ -40,7 +45,7 @@ external_script {
 
 diskdata {
         disk = "nvme1n1p2"
-	format = '[\?color=free {free}]'
+	format = '[\?color=free {free}] '
 	format += '[\?color=total {total}]'
 }
 
@@ -54,6 +59,6 @@ sysdata {
 	format = '[\?color=mem_used_percent Mem: {mem_used}/{mem_total} {mem_total_unit}]'
 }
 
-tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+clock {
+       
 }
