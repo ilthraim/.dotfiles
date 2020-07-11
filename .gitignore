@@ -11,6 +11,8 @@
 !/.config/kitty/*
 !/.config/rofi/
 !/.config/rofi/*
+!/.config/polybar/
+!/.config/polybar/config
 !/.fehbg
 !/.scripts/
 !/.scripts/*

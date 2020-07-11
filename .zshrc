@@ -11,7 +11,10 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-export PATH=$PATH:/home/ilthraim/.local/bin/
+
+export EDITOR='vim'
+export VISUAL='vim'
+
 
 alias dotupdate='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ls='ls --color=auto'

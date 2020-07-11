@@ -52,6 +52,7 @@ xinput set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Accel Speed' 1
 
 xinput set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Tapping Enabled' 1
 
+export PATH=$PATH:/home/ilthraim/.local/bin/
 /usr/bin/prime-offload
 ~/.fehbg &
 exec i3

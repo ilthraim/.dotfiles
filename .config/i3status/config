@@ -45,7 +45,7 @@ external_script {
 
 diskdata {
         disk = "nvme1n1p2"
-	format = '[\?color=free {free}] '
+	format = '[\?color=free {free} GiB] '
 	format += '[\?color=total {total}]'
 }
 
