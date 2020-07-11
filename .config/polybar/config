@@ -20,21 +20,23 @@
 ;background = ${xrdb:color0:#222}
 background = #222
 background-alt = #444
-;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+[vars]
+rightpad = 1
+
 [bar/ilbar]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 2.5%
+height = 3%
 ;offset-x = 1%
 ;offset-y = 1%
 ;radius = 6.0
-fixed-center = false
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -42,21 +44,19 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-;border-size = 4
-;border-color = #00000000
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
-module-margin-left = 1
-module-margin-right = 2
+;module-margin-left = 1
+;module-margin-right = 2
 
 font-0 = SauceCodePro Nerd Font Mono:style=Regular:size=20
-font-1 = Iosevka:style=Regular 
+font-1 = Iosevka Nerd Font Mono:style=Regular:size=20 
+font-2 = SauceCodePro Nerd Font Mono:Style=Regular:size=35
 
-
-modules-left = text
-modules-center = i3
+modules-left = text i3
+;modules-center = i3
 modules-right = pulseaudio  memory cpu wlan battery  date powermenu
 
 tray-position = right
@@ -68,60 +68,33 @@ wm-name = i3
 
 ;override-redirect = true
 
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
 cursor-click = pointer
 cursor-scroll = ns-resize
 
 [module/text]
 type = custom/text
 content = ilthraim@thneedsville
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
-; Separator in between workspaces
-; label-separator = |
+content-background = #2ebee6 
+content-padding = 2
 
 [module/i3]
 type = internal/i3
-format = <label-state> <label-mode>
+format = <label-state>
 index-sort = true
 wrapping-scroll = false
 
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
-
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
+label-focused-background = #027fd9 
+label-unfocused-background = #027fd9
 ; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+;label-focused = %index%
+label-focused = ﯾ
+label-focused-font = 3
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = ﯿ 
 label-unfocused-padding = 2
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
+label-unfocused-font = 3
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
@@ -137,29 +110,29 @@ type = internal/cpu
 interval = 0.5
 format = <label> 
 label = CPU %percentage%%
+format-padding = ${vars.rightpad}
 
 [module/memory]
 type = internal/memory
 interval = 2
 label = MEM %percentage_used%%
+format-padding = ${vars.rightpad}
 
 [module/wlan]
 type = internal/network
 interface = wlp82s0
 interval = 3.0
+format-connected-padding = ${vars.rightpad}
+format-disconnected-padding = ${vars.rightpad}
 
-format-connected =  <label-connected>
-label-connected = %essid%
+format-connected = <label-connected>
+;label-connected = %essid%
+label-connected = 直
+label-connected-font = 3
 
-label-disconnected =  Disconnected
+label-disconnected = 睊
 format-disconnected = <label-disconnected>
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+label-disconnected-font = 3
 
 [module/date]
 type = internal/date
@@ -172,15 +145,18 @@ time-alt = %H:%M:%S
 
 
 label = %date% %time%
-
+label-padding = ${vars.rightpad}
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
+format-volume-padding = 2 
 label-volume = VOL %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 muted
+format-muted = <label-muted> 
+format-muted-padding = ${vars.rightpad}
+label-muted = muted
 label-muted-foreground = #666
 
 bar-volume-width = 10
@@ -209,6 +185,7 @@ full-at = 98
 
 format-charging = <animation-charging> <label-charging>
 label-charging = %percentage%
+format-padding = ${vars.rightpad}
 
 format-discharging = <ramp-capacity> <label-discharging>
 label-discharging = %percentage% %time%
