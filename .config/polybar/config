@@ -28,6 +28,7 @@ alert = #bd2c40
 
 [vars]
 rightpad = 1
+midpad = 1
 
 [bar/ilbar]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -56,8 +57,8 @@ font-1 = Iosevka Nerd Font Mono:style=Regular:size=20
 font-2 = SauceCodePro Nerd Font Mono:Style=Regular:size=35
 
 modules-left = text i3
-;modules-center = i3
-modules-right = pulseaudio  memory cpu wlan battery  date powermenu
+modules-center = spotify
+modules-right = pulseaudio  memory cpu wlan battery date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -104,6 +105,14 @@ label-urgent-padding = 2
 ; Separator in between workspaces
 ; label-separator = |
 
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+format-background = #1DB954
+format-padding = ${vars.midpad}
+exec = python /home/ilthraim/.scripts/spotifystatus.py -p '契,' -f '{play_pause} {song} - {artist}' 
 
 [module/cpu]
 type = internal/cpu
@@ -185,13 +194,15 @@ full-at = 98
 
 format-charging = <animation-charging> <label-charging>
 label-charging = %percentage%
-format-padding = ${vars.rightpad}
+format-charging-padding = ${vars.rightpad}
 
 format-discharging = <ramp-capacity> <label-discharging>
 label-discharging = %percentage% %time%
+format-discharging-padding = ${vars.rightpad}
 
 format-full = <label-full>
 label-full =  100%
+format-full-padding = ${vars.rightpad}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
