@@ -136,6 +136,6 @@ try:
 
 except Exception as e:
     if isinstance(e, dbus.exceptions.DBusException):
-        print('')
+        print('Disconnected')
     else:
-        print(e)
+        print('Disconnected')
