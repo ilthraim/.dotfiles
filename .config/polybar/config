@@ -47,7 +47,7 @@ height = 3%
 ;offset-x = 1%
 ;offset-y = -1%
 ;radius = 6.0
-fixed-center = true
+fixed-center = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -68,7 +68,7 @@ font-1 = Iosevka Nerd Font Mono:style=Regular:size=20
 font-2 = SauceCodePro Nerd Font Mono:Style=Regular:size=35
 font-3 = SauceCodePro Nerd Font:style=Regular:size=45;7
 
-modules-left = text 12border i3 23border
+modules-left = user 12border i3 23border
 modules-center = 23rborder spotify 34border
 modules-right = 34rborder pulseaudio 45border memory 56border cpu 67border wlan 78border battery 89border date 
 
@@ -154,12 +154,13 @@ content-background = ${colors.shade9}
 content-foreground = ${colors.shade8}
 content-font = 4
 
-[module/text]
-type = custom/text
-content = ilthraim@thneedville
-content-background = #07409a
-;content-foreground = #251311 
-content-padding = 2
+[module/user]
+type = custom/script
+exec = echo "$(whoami)@$(hostname)"
+format = <label>
+label = %output%
+format-padding = 1
+format-background = ${colors.shade1}
 
 [module/i3]
 type = internal/i3
@@ -173,11 +174,11 @@ label-unfocused-background = ${colors.shade2}
 ;label-focused = %index%
 label-focused = ﯾ
 label-focused-font = 3
-label-focused-padding = 2
+label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = ﯿ 
-label-unfocused-padding = 2
+label-unfocused-padding = 1
 label-unfocused-font = 3
 
 ; urgent = Workspace with urgency hint set
@@ -195,21 +196,21 @@ format = <label>
 format-background = #ff9223
 format-foreground = #121307
 format-padding = ${vars.midpad}
-exec = python /home/ilthraim/.scripts/spotifystatus.py -p '契,' -f '{play_pause} {song} - {artist}' 
+exec = python /home/ilthraim/.scripts/spotifystatus.py -p '契,' -f '{play_pause} {song} - {artist}' 2>/dev/null 
 label-maxlen = 100
 
 [module/cpu]
 type = internal/cpu
 interval = 0.5
 format = <label> 
-label = CPU %percentage%%
+label = CPU %percentage:3%%
 format-padding = ${vars.rightpad}
 format-background = #f83808
 
 [module/memory]
 type = internal/memory
 interval = 2
-label = MEM %percentage_used%%
+label = MEM %percentage_used:2%%
 format-padding = ${vars.rightpad}
 format-background = #fc480a
 
@@ -235,7 +236,7 @@ label-disconnected-font = 3
 type = internal/date
 interval = 5
 
-date = %Y-%m-%d
+date = %m-%d-%Y
 
 time = %l:%M
 

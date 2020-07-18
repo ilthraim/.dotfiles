@@ -134,8 +134,5 @@ try:
                                      play_pause=play_pause, 
                                      album=album), trunclen + 4))
 
-except Exception as e:
-    if isinstance(e, dbus.exceptions.DBusException):
-        print('Disconnected')
-    else:
-        print('Disconnected')
+except: 
+    print('Disconnected')
