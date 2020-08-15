@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale '/home/ilthraim/.wallpapers/wallthraim.png' 
+feh --no-fehbg --bg-fill '/home/ilthraim/.config/awesome//wallpaper/wallpaper.jpg' 

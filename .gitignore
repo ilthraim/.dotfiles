@@ -14,6 +14,8 @@
 !/.config/rofi/*
 !/.config/polybar/
 !/.config/polybar/config
+!/.config/picom/
+!/.config/picom/*
 !/.fehbg
 !/.scripts/
 !/.scripts/*
